@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+
+{% block head %}
+
+	<!-- <script type=text/javascript>
+		$(function() {
+		  $('#link').bind('click', function() {
+			$.getJSON('/background_process/', {
+			  balance: $('balance').val(),
+			}, function(data) {
+			  $("#result").text(data.balance);
+			});
+			return false;
+		  });
+		});
+	</script> -->
+
+	<script type="text/javascript">
+		
+	var balance = '{{ balance }}';
+
+	</script>
+
+{% endblock %}
+
+
+{% block content %}
+  <body class="noselect">
+
+ 	<form>
+	  	<a id="link" href="/getbitcoin/">
+		    <div class="get-bitcoin"> 
+		      <div class="get-bitcoin-button">
+		        <h1 class="bitcoin-header">{{ balance }}</h1>
+		        <!-- <h1 id="result"></h1> -->
+		      </div>
+		    </div>
+		</a>
+	</form>
+
+
+{% endblock content %}
