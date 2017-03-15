@@ -15,7 +15,7 @@ def home():
 @app.route("/getbitcoin/")
 def getbitcoin():
 
-	balance = arduino.readline()
+	# balance = arduino.readline()
 	return render_template("getbitcoin.html", balance = Balance.balance)
 
 # @app.route("/background_process/")
