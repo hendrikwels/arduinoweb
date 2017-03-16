@@ -5,7 +5,6 @@ int signalValue = 0; // For storing value from analog input
 
 int state; // Current state
 int lastState = 0; // Last state
-int x;
 
 double balance = 0; // Pence
 double coinValue = 0; // Curent coin value
@@ -30,8 +29,9 @@ void setup() {
 
 
 }
-for (x = 0; x < 3; x++) {
+
 void loop() {
+
   signalValue = analogRead(coinSelector); // Read analog value from coin selector
 
   if (signalValue > 1000) {
@@ -48,7 +48,7 @@ void loop() {
 
      if (update == 0) {
 
-      if ((millis() - updateDebounceTime) > updateDebounceDelay) {
+      if ((501 - updateDebounceTime) > updateDebounceDelay) {
 
         //Serial.print("Coin Value: ");
         Serial.println(coinValue / 10); // WARNING: The coin value will be wrong if coins are inserted within the updateDebounceDelay, adjust the delay and test
@@ -89,10 +89,9 @@ void loop() {
     }
 
     lastState = state; // Update last state
+
   }
 
   delay(1);
 
-}
-Serial.println("ENDE");
 }
