@@ -8,7 +8,7 @@ int lastState = 0; // Last state
 
 double balance = 0; // Pence
 double coinValue = 0; // Curent coin value
-
+double btc;
 int update = 1; // Used for sending an update
 
 long updateDebounceTime = 0; // The last time we sent an update
@@ -59,13 +59,10 @@ void loop() {
         coinValue = 0; // Reset current coin value
 
         update = 1; // Make sure we don't run again, till next coin
-
+        break;
       }
-
     }
-
   }
-
-  delay(1);
-
+ btc = balance * 0.005;
+ Serial.println(btc);
 }
