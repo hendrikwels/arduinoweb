@@ -22,6 +22,15 @@ def getbitcoin():
 
 	return render_template("getbitcoin.html", balance = balance)
 
+@app.route("/exchange/")
+def exchange():
+
+	balance = arduino.readline()
+	float_balance = float(balance)
+	exchange_rate = float_balance * 5
+
+	return render_template("exchange.html", exchange_rate = exchange_rate)
+
 	
 
 if __name__ == "__main__":
