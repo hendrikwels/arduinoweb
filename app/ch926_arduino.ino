@@ -48,7 +48,7 @@ void loop() {
 
      if (update == 0) {
 
-      if ((millis() - updateDebounceTime) > updateDebounceDelay) {
+      while ((millis() - updateDebounceTime) > updateDebounceDelay) {
 
         //Serial.print("Coin Value: ");
         Serial.println(coinValue / 10); // WARNING: The coin value will be wrong if coins are inserted within the updateDebounceDelay, adjust the delay and test
@@ -59,7 +59,6 @@ void loop() {
         coinValue = 0; // Reset current coin value
 
         update = 1; // Make sure we don't run again, till next coin
-        break;
       }
     }
   }
