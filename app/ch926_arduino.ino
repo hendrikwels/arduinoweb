@@ -23,10 +23,10 @@ void setup() {
   delay(2000); // Don't start main loop until we're sure that the coin selector has started
 
   Serial.println("Ready..");
-  
+
   state = 1;
-  
-  
+
+
 
 }
 
@@ -38,8 +38,8 @@ void loop() {
 
     state = 1; // State is 1 as we're high, damit man weiter klicken kann
 
-  } 
-  
+  }
+
   else {
 
      state = 0;
@@ -64,32 +64,6 @@ void loop() {
 
     }
 
-  }
-
-  if (state != lastState) {
-
-    // Process new signal
-
-    if (state == 1) {
-
-      digitalWrite(13, HIGH); // Turn status LED on to show signal
-
-      balance = balance + signalCostFactor; // Update balance
-
-      coinValue = coinValue + signalCostFactor; // Update coin value
-
-      updateDebounceTime = millis(); // Update last time we processed a signal
-
-      update = 0; // Time to send a update now?
-
-    } else {
-
-      digitalWrite(13, LOW);  // Turn status LED off
-
-    }
-
-    lastState = state; // Update last state
-    
   }
 
   delay(1);
