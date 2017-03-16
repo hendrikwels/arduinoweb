@@ -30,9 +30,8 @@ void setup() {
 
 
 }
-
+for (x = 0; x < 3; x++) {
 void loop() {
-  for (x = 0; x < 3; x++) {
   signalValue = analogRead(coinSelector); // Read analog value from coin selector
 
   if (signalValue > 1000) {
@@ -91,9 +90,9 @@ void loop() {
 
     lastState = state; // Update last state
   }
-  Serial.println("ENDE");
-  }
 
   delay(1);
 
+}
+Serial.println("ENDE");
 }
