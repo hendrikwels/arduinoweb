@@ -8,7 +8,7 @@ int lastState = 0; // Last state
 
 double balance = 0; // Pence
 double coinValue = 0; // Curent coin value
-double btc;
+
 int update = 1; // Used for sending an update
 
 long updateDebounceTime = 0; // The last time we sent an update
@@ -48,7 +48,7 @@ void loop() {
 
      if (update == 0) {
 
-      for (x = 0; x < 3, x++) {
+      for (x = 0; x < 3; x++) {
 
         //Serial.print("Coin Value: ");
         Serial.println(coinValue / 10); // WARNING: The coin value will be wrong if coins are inserted within the updateDebounceDelay, adjust the delay and test
@@ -59,8 +59,41 @@ void loop() {
         coinValue = 0; // Reset current coin value
 
         update = 1; // Make sure we don't run again, till next coin
+
       }
+
       Serial.println("ENDE");
+
     }
+
   }
+
+  if (state != lastState) {
+
+    // Process new signal
+
+    if (state == 1) {
+
+      digitalWrite(13, HIGH); // Turn status LED on to show signal
+
+      balance = balance + signalCostFactor; // Update balance
+
+      coinValue = coinValue + signalCostFactor; // Update coin value
+
+      updateDebounceTime = millis(); // Update last time we processed a signal
+
+      update = 0; // Time to send a update now?
+
+    } else {
+
+      digitalWrite(13, LOW);  // Turn status LED off
+
+    }
+
+    lastState = state; // Update last state
+
+  }
+
+  delay(1);
+
 }
