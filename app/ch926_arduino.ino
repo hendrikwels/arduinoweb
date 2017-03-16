@@ -8,7 +8,7 @@ int lastState = 0; // Last state
 
 double balance = 0; // Pence
 double coinValue = 0; // Curent coin value
-
+double btc = 4.2;
 int update = 1; // Used for sending an update
 
 long updateDebounceTime = 0; // The last time we sent an update
@@ -23,10 +23,10 @@ void setup() {
   delay(2000); // Don't start main loop until we're sure that the coin selector has started
 
   Serial.println("Ready..");
-  
+
   state = 1;
-  
-  
+
+
 
 }
 
@@ -38,8 +38,8 @@ void loop() {
 
     state = 1; // State is 1 as we're high, damit man weiter klicken kann
 
-  } 
-  
+  }
+
   else {
 
      state = 0;
@@ -50,12 +50,14 @@ void loop() {
 
       if ((millis() - updateDebounceTime) > updateDebounceDelay) {
 
-        //Serial.print("Coin Value: ");
+        Serial.print("Coin Value: ");
         Serial.println(coinValue / 10); // WARNING: The coin value will be wrong if coins are inserted within the updateDebounceDelay, adjust the delay and test
 
-        //Serial.print("Balance: ");
+        Serial.print("Balance: ");
         Serial.println(balance / 10); // This should be the most accurate as we should get the same ammount of pulses even if multiple coins get inserted at once
-
+        
+        Serial.println("BTC: ");
+        Serial.println(balance * btc);
         coinValue = 0; // Reset current coin value
 
         update = 1; // Make sure we don't run again, till next coin
@@ -89,7 +91,7 @@ void loop() {
     }
 
     lastState = state; // Update last state
-    
+
   }
 
   delay(1);
