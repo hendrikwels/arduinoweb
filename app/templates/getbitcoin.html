@@ -17,7 +17,20 @@
 
 	<script type="text/javascript">
 		
-	var balance = '{{ balance }}';
+	
+
+	
+			$("document").ready(function(){
+		    setInterval(function(){
+		        $.ajax({
+		            url:"/getbitcoin/",
+		            success:function(result){
+		                $(".get-bitcoin").html(result);
+		            }
+			        });
+			    }, 2000);
+			});
+
 
 	</script>
 
@@ -25,7 +38,6 @@
 
 
 {% block content %}
-  <body class="noselect">
 
  	
 	  	<a id="link" href="/getbitcoin/">
